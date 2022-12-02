@@ -8,3 +8,5 @@ const knex = require('knex')({
       database : 'blog'
     }
   });
+
+  module.exports = knex
