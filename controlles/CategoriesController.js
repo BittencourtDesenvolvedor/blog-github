@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/categories', (req, res) => {
-    res.send('admin/categories')
+    res.render('admin/categories')
+})
+
+router.get('/categories/news', (req, res) => {
+    res.render('admin/categories/new')
 })
 
 
