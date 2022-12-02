@@ -7,7 +7,12 @@ app.get("/", (req, res) => {
 
 app.get("/teste", (req, res) => {
     res.send("teste 2")
-})    
+})  
+
+app.get("/teste3", (req, res) => {
+    res.send("teste 3")
+})
+  
 
 app.listen(2000, () => {
     console.log('App Rodando')
