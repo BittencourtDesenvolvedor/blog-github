@@ -1,7 +1,33 @@
 <%- include("../../partials/header.ejs") %>
+<%- include("../../partials/nav.ejs") %>
+
 
 <div class="container">
-    <h1>pagina principal da categoria</h1>
+    <br>
+    <h2>Categorias</h2>
+    <a href="/categories/news" class="btn btn-dark" >Nova Categoria</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Slug</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categ.forEach(categ => { %>
+                <tr>
+                    <td><%= categ.id %></td>
+                    <td><%= categ.title %></td>
+                    <td><%= categ.slug %></td>
+                    <td></td>
+                </tr>               
+            <% }) %>
+          
+        </tbody>
+    </table>
 </div>
 
 <%- include("../../partials/footer.ejs") %>
