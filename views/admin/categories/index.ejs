@@ -4,10 +4,13 @@
 
 <div class="container">
     <br>
-    <h2>Categorias</h2>
-    <a href="/categories/news" class="btn btn-dark" >Nova Categoria</a>
-    <hr>
-    <table class="table table-bordered">
+    <div class="card">
+        <div class="headerCateg card-header">
+        <h2>Categorias</h2>
+        <a href="/categories/news" class="btn btn-dark" >Nova Categoria</a>
+        </div>
+        <hr>
+       <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -22,12 +25,29 @@
                     <td><%= categ.id %></td>
                     <td><%= categ.title %></td>
                     <td><%= categ.slug %></td>
-                    <td></td>
+                    <td>
+                        <a href="/categories/edit/<%=categ.id%>"
+                             title="Editar"
+                             class="btnsCateg">
+                             <img src="/img/atualizar.png" alt="">
+                        </a>
+
+                        <form action="/categories/delete" method="post" onsubmit="deletarForm(event, this)">
+                            <input type="hidden" name="id" value="<%=categ.id%>">
+                            <button
+                             title="Excluir"
+                             class="btnsCateg">
+                             <img src="/img/excluir.png"" alt="">
+                            </button>
+                        </form>
+                      
+                    </td>
                 </tr>               
             <% }) %>
           
         </tbody>
-    </table>
+       </table>
+    </div>   
 </div>
 
 <%- include("../../partials/footer.ejs") %>

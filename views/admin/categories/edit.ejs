@@ -1,0 +1,34 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/nav.ejs") %>
+
+<div class="container">
+    <br>
+    <div class="card">
+       <% categ.forEach(categ => { %> 
+        <div class="card-header">
+              <h2>Atualizar a Categoria</h2>
+              <p>Edite sua categoria</p>
+        </div>
+        <div class="card-body">
+              <form action="/categories/edit" method="post">
+                <input 
+                type="hidden" 
+                name="id" 
+                value="<%= categ.id %>"
+             >
+                 <input 
+                    type="text" 
+                    name="title" 
+                    placeholder="Título da categoria..."
+                    class="form-control"
+                    value="<%= categ.title %>"
+                 ><br/>
+                 <button class="btn btn-dark">Atualizar</button>
+              </form>
+        </div>
+        <% }) %>
+    </div>
+    
+</div>
+
+<%- include("../../partials/footer.ejs") %>

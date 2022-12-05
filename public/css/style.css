@@ -1,0 +1,13 @@
+.btnsCateg{
+    background-color: transparent;
+    padding: 0px 10%;
+    margin-left: 5%;
+    border: none;
+    float: left;
+}
+.headerCateg{
+   display: flex;
+   flex-direction: row;
+   align-items: baseline;
+   justify-content:space-between;
+}
