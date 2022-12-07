@@ -1,6 +1,53 @@
 <%- include("../../partials/header.ejs") %>
 <%- include("../../partials/nav.ejs") %>
 
-<h1>testando artigos</h1>
+
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="headerCateg card-header">
+        <h2>Artigos</h2>
+        <a href="/articles/news" class="btn btn-dark" >Novo Artigo</a>
+        </div>
+        <hr>
+       <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% art.forEach(art => { %>
+                <tr>
+                    <td><%= art.id %></td>
+                    <td><%= art.title %></td>
+                    <td><%= art.titleCateg %></td>
+                    <td>
+                        <a href="/articles/edit/<%=art.id%>"
+                             title="Editar"
+                             class="btnsCateg">
+                             <img src="/img/atualizar.png" alt="Imagem de atualizar">
+                        </a>
+
+                        <form action="/articles/delete" method="post" onsubmit="deletarForm(event, this)">
+                            <input type="hidden" name="id" value="<%=art.id%>">
+                            <button
+                             title="Excluir"
+                             class="btnsCateg">
+                             <img src="/img/excluir.png"" alt="Imagem de excluir">
+                            </button>
+                        </form>
+                      
+                    </td>
+                </tr>               
+            <% }) %>
+          
+        </tbody>
+       </table>
+    </div>   
+</div>
 
 <%- include("../../partials/footer.ejs") %>

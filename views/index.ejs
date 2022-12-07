@@ -1,7 +1,18 @@
 <%- include("partials/header.ejs") %>
- 
+<%- include("partials/nav.ejs") %>
+<br>
 <div class="container">
-     <h1>testando</h1>
+     <div class="card">
+          <div class="card-header">
+             <h2>Artigos</h2>
+          </div>
+          <div class="card-body">
+               <% art.forEach(art => { %>
+                    <p><%- art.body %></p>
+                    <a href="" class="btn btn-primary">Ler Mais</a><br><br>
+               <% }) %> 
+          </div>
+     </div>
 </div>
 <%- include("partials/footer.ejs") %>
 

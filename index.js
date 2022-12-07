@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
+const conn = require("./db/conn")
 
 const categoriesController = require('./controlles/CategoriesController');
 const articlesController = require('./controlles/ArticlesController');
@@ -16,9 +17,13 @@ app.use('/', categoriesController);
 app.use('/', articlesController);
 
 app.get("/", (req, res) => {
-    res.render('index')
+    conn.select().table('articles').then(art => {
+        res.render('index', {art: art})
+    })
+    
 })  
 
 app.listen(2000, () => {
+
     console.log('App Rodando')
 })

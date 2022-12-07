@@ -1,0 +1,54 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/nav.ejs") %>
+
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-header">
+                <h2>Editar o Artigo</h2>
+                <p>Transforme as suas ideias em artigos e compartilhe com o Mundo!</p>
+        </div>
+        <div class="card-body">
+            <% art.forEach(art => { %> 
+            <form action="/articles/edit" method="post">
+                <input type="hidden" name="id" value="<%= art.id %>">
+                <label for=""><strong>Título:</strong> </label>
+                <input 
+                   type="text" 
+                   name="title" 
+                   placeholder="Título do Artigo..."
+                   class="form-control"
+                   value="<%= art.title %>"
+                ><br/>
+                <textarea 
+                     name="body" 
+                     id="body" 
+                     placeholder="Escreva seu Artigo aqui..."
+                     class="form-control">
+                     <%= art.body %>
+                </textarea><br>
+                <label for="categ"><strong>Selecione a Categoria</strong> </label>
+                <select name="categories" id="categ" class="form-control" >
+                    <option value=""></option>
+                    <% categ.forEach(categ => { %> 
+                       <option value="<%= categ.id %>"><%= categ.title %></option>
+                    <% }) %>
+                </select><br>
+                <button class="btn btn-dark">Atualizar</button>
+             </form>
+             <% }) %>
+        </div>
+    </div>
+</div>
+
+<% include("../../partials/footer.ejs") %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language: "pt_BR",
+        selector: "#body",
+        plugins: [
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons '
+        ]
+    })
+</script>
