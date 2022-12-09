@@ -17,11 +17,42 @@ app.use('/', categoriesController);
 app.use('/', articlesController);
 
 app.get("/", (req, res) => {
-    conn.select().table('articles').then(art => {
-        res.render('index', {art: art})
+    conn.select().table('articles').orderBy("id", 'desc').then(art => {
+        conn.select().table("categories").then(categ => {
+           res.render('index', {art: art, categ: categ}) 
+        })        
     })
     
+})
+app.get("/:slug", (req, res) => {
+    var slug = req.params.slug;
+    conn.select().table("articles").where({slug: slug}).then(art => {
+        conn.select().table("categories").then(categ => {
+            if(art != undefined){
+              res.render("article", {art: art, categ: categ})
+           }else{
+              res.redirect("/")
+           }
+        }).catch(err => {
+            res.redirect("/")
+        })       
+    }).catch(err => {
+        res.redirect("/")
+    })
 })  
+
+app.get("/categories/:slug", (req, res) => {
+    var slug = req.params.slug;
+    conn.select(["articles.*", "categories.title as titleCateg"]).table("categories").where({slug: slug}).innerJoin("articles", "articles.id_categories", "categories.id").then(art => {
+        if(categ != undefined){
+             res.render("index", {art: art})
+        }else{
+            res.send("teste 1")
+        }
+    }).catch(err => {
+        res.send("teste 2")
+    })
+})
 
 app.listen(2000, () => {
 
